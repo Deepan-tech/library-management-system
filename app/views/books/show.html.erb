@@ -1,0 +1,24 @@
+<h1>Book Details</h1>
+
+<p>ID: <%= @book.id %></p>
+<p>Title: <%= @book.title %></p>
+<p>ISBN: <%= @book.isbn %></p>
+<p>Edition: <%= @book.edition %></p>
+
+<h2>Book Copies</h2>
+
+<% @book.book_copies.each do |copy| %>
+  <div>
+    <p>Barcode: <%= copy.barcode %></p>
+    <p>Status: <%= copy.copy_status %></p>
+
+    <% if copy.copy_status == "available" %>
+      <%= button_to "Borrow Book","/book-copies/#{copy.id}/borrow",method: :post %>
+    <% else %>
+      <p>This copy is currently unavailable.</p>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
+
+<a href="/books">Back to Book List</a>

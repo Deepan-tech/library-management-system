@@ -1,0 +1,25 @@
+<%= form_with(model: @book) do |form| %>
+  <div >
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div> 
+    <%= form.label :isbn, style: "display: block" %>
+    <%= form.text_field :isbn %>
+  </div>
+
+  <div>
+    <%= form.label :edition, style: "display: block" %>
+    <%= form.text_field :edition %>
+  </div>
+
+  <div>
+    <%= form.label :publication_date, style: "display: block" %>
+    <%= form.date_field :publication_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

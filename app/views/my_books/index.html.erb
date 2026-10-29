@@ -1,0 +1,27 @@
+<h1>My Borrowed Books</h1>
+
+<% if @statuses.any? %>
+  <table border="1">
+    <tr>
+      <th>Book Title</th>
+      <th>Barcode</th>
+      <th>Borrowed Date</th>
+      <th>Due Date</th>
+    </tr>
+
+    <% @statuses.each do |status| %>
+      <tr>
+        <td><%= status.book_copy.book.title %></td>
+        <td><%= status.book_copy.barcode %></td>
+        <td><%= status.barrowed_at %></td>
+        <td><%= status.due_at %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>You have no currently borrowed books.</p>
+<% end %>
+
+<br>
+
+<a href="/student/dashboard">Back to Dashboard</a>

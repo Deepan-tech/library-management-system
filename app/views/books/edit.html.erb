@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Book</title>
+</head>
+<body>
+  <h1>Edit Book</h1>
+ 
+  <form action="/books/edit/<%= @book.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="patch">
+ 
+    <table>
+      <tr>
+        <td>Enter title:</td>
+        <td>
+          <input type="text" name="book[title]" value="<%= @book.title %>">
+        </td>
+      </tr>
+ 
+      <tr>
+        <td>Enter isbn:</td>
+        <td>
+          <input type="number" name="book[isbn]" value="<%= @book.isbn %>">
+        </td>
+      </tr>
+ 
+      <tr>
+        <td>publication_date:</td>
+        <td>
+          <input type="date" name="book[publication_date]" value="<%= @book.publication_date %>">
+        </td>
+      </tr>
+ 
+      <tr>
+        <td><button type="submit">Update Book</button></td>
+      </tr>
+    </table>
+     <%= button_to "Destroy this book",
+                book_path(@book),
+                method: :delete,
+                data: { turbo_confirm: "Are you sure?" } %>
+  </form>
+ 
+  
+</body>
+</html>

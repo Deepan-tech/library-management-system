@@ -1,0 +1,19 @@
+
+<div class="container mt-5">
+
+  <h1 class="text-primary text-center mb-4">
+    Select Genre Name
+  </h1>
+
+
+    <% @genres.each do |genre| %>
+
+      <p >
+        <%= link_to genre.genre_name,
+              showbook_genre_path(id: genre.id),
+              class: "btn btn-outline-primary w-50" %>
+      </p>
+
+    <% end %>
+
+</div>

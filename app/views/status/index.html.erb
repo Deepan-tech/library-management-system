@@ -1,0 +1,60 @@
+<h1>Borrowing Status</h1>
+
+<% if notice.present? %>
+  <p class="text-success"><%= notice %></p>
+<% end %>
+
+<% if alert.present? %>
+  <p class="text-danger"><%= alert %></p>
+<% end %>
+
+<table border="1" cellpadding="10", class="table table-striped table-hover table-bordered  bg-white">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Book Name</th>
+      <th>Copy Barcode</th>
+      <th>Borrowed At</th>
+      <th>Due At</th>
+      <th>Return Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @statuses.each do |status| %>
+      <tr>
+        <td><%= status.student.username %></td>
+
+        <td><%= status.book_copy.book.title %></td>
+
+        <td><%= status.book_copy.barcode %></td>
+
+        <td><%= status.barrowed_at %></td>
+
+        <td><%= status.due_at %></td>
+
+        <td>
+          <% if status.return_at.nil? %>
+            Not Returned
+          <% else %>
+            Returned
+          <% end %>
+        </td>
+
+        <td>
+          <% if status.return_at.nil? %>
+            <%= button_to "Mark as Returned",
+                  return_status_path(status),
+                  method: :patch,
+                  data: {
+                    turbo_confirm: "Confirm that this book has been returned?"
+                  } %>
+          <% else %>
+            Already Returned
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

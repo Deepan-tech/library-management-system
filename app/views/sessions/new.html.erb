@@ -1,0 +1,25 @@
+<h1 class="bg-primary text-white p-2">Library Management System</h1>
+<h2>Login</h2>
+
+<%= form_with method: :post do |form| %>
+  <div>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+  </div>
+
+  <br>
+
+  <div>
+    <label>Password:</label>
+    <input type="password" name="password" required>
+  </div>
+
+  <br>
+
+  <button type="submit">Login</button>
+<% end %>
+
+<p>
+  Don't have an account?
+  <a href="/signup">Register as a student</a>
+</p>

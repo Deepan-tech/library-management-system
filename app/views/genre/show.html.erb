@@ -1,0 +1,30 @@
+<h1>Books in <%= @genre.genre_name %></h1>
+
+<% if @books.any? %>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Edition</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.id %></td>
+          <td><%= book.title %></td>
+          <td><%= book.isbn %></td>
+          <td><%= book.edition %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No books are associated with this genre yet.</p>
+<% end %>
+
+<p><%= link_to "Back to Genres", "/genre/index" %></p>
+<p><%= link_to "Back to Books", books_path %></p>

@@ -1,0 +1,64 @@
+<div class="container mt-4">
+
+  <!-- Dashboard Heading -->
+  <h1 class="text-primary mb-3">Student Dashboard</h1>
+
+  <h4>Welcome, <%= @student.username %>!</h4>
+
+  <hr>
+
+  <!-- Student Menu -->
+  <h5 class="mb-3">Menu</h5>
+
+  <div class="row">
+
+    <!-- Borrowed Books -->
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+
+          <h5 class="card-title">My Borrowed Books</h5>
+
+          <p class="card-text">
+            View the books you have borrowed from the library.
+          </p>
+
+          <%= link_to "View My Books",
+              "/my-books",
+              class: "btn btn-primary" %>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Buy Books -->
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+
+          <h5 class="card-title">Buy Books</h5>
+
+          <p class="card-text">
+            Explore books available in the library catalogue.
+          </p>
+
+          <%= link_to "Browse Books",
+              "/genre/index",
+              class: "btn btn-success" %>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- Logout Button -->
+  <%= button_to "Logout",
+      logout_path,
+      method: :delete,
+      class: "btn btn-danger" %>
+
+</div>
+```
