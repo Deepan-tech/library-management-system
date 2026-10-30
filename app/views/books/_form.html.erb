@@ -1,25 +1,53 @@
-<%= form_with(model: @book) do |form| %>
-  <div >
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
 
-  <div> 
-    <%= form.label :isbn, style: "display: block" %>
-    <%= form.text_field :isbn %>
-  </div>
+<div class="container mt-3">
+  <h3>Book Details</h3>
 
-  <div>
-    <%= form.label :edition, style: "display: block" %>
-    <%= form.text_field :edition %>
-  </div>
+  <%= form_with(model: @book) do |form| %>
 
-  <div>
-    <%= form.label :publication_date, style: "display: block" %>
-    <%= form.date_field :publication_date %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :title, "Book Title" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div class="mb-3">
+      <%= form.label :isbn, "ISBN" %>
+      <%= form.text_field :isbn, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :edition, "Edition" %>
+      <%= form.text_field :edition, class: "form-control" %>
+    </div>
+
+    
+<% if session[:admin_id].present? %>
+  <div class="mb-3">
+    <%= form.label :genre_ids, "Genres", class: "form-label" %>
+
+    <%= form.collection_select(
+          :genre_ids,
+          genres,
+          :id,
+          :genre_name,
+          { prompt: "Select a genre" },
+          {
+            multiple: true,
+            class: "form-select",
+            id: "genre-select"
+          }
+        ) %>
+
+    <div id="selected-genres" class="mt-2"></div>
   </div>
 <% end %>
+
+
+    <div class="mb-3">
+      <%= form.label :publication_date, "Publication Date" %>
+      <%= form.date_field :publication_date, class: "form-control" %>
+    </div>
+
+    <%= form.submit "Save Book", class: "btn btn-primary" %>
+
+  <% end %>
+</div>

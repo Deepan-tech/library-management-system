@@ -1,27 +1,43 @@
-<h1>My Borrowed Books</h1>
 
-<% if @statuses.any? %>
-  <table border="1">
-    <tr>
-      <th>Book Title</th>
-      <th>Barcode</th>
-      <th>Borrowed Date</th>
-      <th>Due Date</th>
-    </tr>
+<div class="container mt-5">
+  <h1 class="text-primary text-center mb-4">
+    My Borrowed Books
+  </h1>
+  <% if @statuses.any? %>
+    <div class="card shadow-sm p-3">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Book Title</th>
+              <th>Barcode</th>
+              <th>Borrowed Date</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @statuses.each do |status| %>
+              <tr>
+                <td><%= status.book_copy.book.title %></td>
+                <td><%= status.book_copy.barcode %></td>
+                <td><%= status.barrowed_at %></td>
+                <td><%= status.due_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info text-center">
+      You have no currently borrowed books.
+    </div>
+  <% end %>
 
-    <% @statuses.each do |status| %>
-      <tr>
-        <td><%= status.book_copy.book.title %></td>
-        <td><%= status.book_copy.barcode %></td>
-        <td><%= status.barrowed_at %></td>
-        <td><%= status.due_at %></td>
-      </tr>
-    <% end %>
-  </table>
-<% else %>
-  <p>You have no currently borrowed books.</p>
-<% end %>
+  <div class="mt-4">
+    <%= link_to "Back to Dashboard",
+          "/student/dashboard",
+          class: "btn btn-secondary" %>
+  </div>
 
-<br>
-
-<a href="/student/dashboard">Back to Dashboard</a>
+</div>

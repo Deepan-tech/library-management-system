@@ -9,24 +9,37 @@ class BooksController < ApplicationController
   
   def edit
     @book = Book.find(params[:id])
+    @genres = Genre.all
   end
 
-  def update
-    @book = Book.find(params[:id])
+  # def update
+  #   @book = Book.find(params[:id])
  
-  if @book.update(
-    title: params[:book][:title],
-    isbn: params[:book][:isbn],
-    publication_date: params[:book][:publication_date]
-  )
-    redirect_to "/books"
+  # if @book.update(
+  #   title: params[:book][:title],
+  #   isbn: params[:book][:isbn],
+  #   publication_date: params[:book][:publication_date]
+  # )
+  #   redirect_to "/books"
+  # else
+  #   render :edit, status: :unprocessable_entity
+  # end
+  # end
+  
+  def update
+  @book = Book.find(params[:id])
+
+  if @book.update(book_params)
+    redirect_to books_path, notice: "Book was successfully updated."
   else
+    @genres = Genre.all
     render :edit, status: :unprocessable_entity
   end
-  end
+end
 
   def new
     @book = Book.new
+    @genres = Genre.all
   end
 
   def create
@@ -34,6 +47,9 @@ class BooksController < ApplicationController
 
     if @book.save
       redirect_to "/books"
+    else
+       @genres = Genre.all
+       render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,6 +64,13 @@ class BooksController < ApplicationController
   end
   
   def book_params
-    params.require(:book).permit(:title, :isbn ,:edition, :publication_date)
-  end
+  params.require(:book).permit(
+    :title,
+    :isbn,
+    :edition,
+    :publication_date,
+    genre_ids: []
+  )
+end
+
 end
