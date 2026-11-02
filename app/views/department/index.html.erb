@@ -1,0 +1,19 @@
+
+<div class="container mt-5">
+
+  <h1 class="text-primary text-center mb-4">
+    Select Department Name
+  </h1>
+  <%if session[:admin_id].present?%>
+  <% @department.each do |department| %>
+
+      <p >
+        <%= link_to department.department_name,
+              student_path(id: department.id),
+              class: "btn btn-outline-primary w-50" %>
+      </p>
+    <% end %>
+  <%end%>
+    
+
+</div>

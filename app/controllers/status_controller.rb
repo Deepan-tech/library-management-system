@@ -12,7 +12,7 @@ class StatusController < ApplicationController
       status.reload
 
       if status.return_at.present?
-        redirect_to "/status", alert: "This book has already been returned."
+        redirect_to "/status"
         return
       end
 
@@ -23,11 +23,7 @@ class StatusController < ApplicationController
       book_copy.update!(copy_status: "available")
     end
 
-    redirect_to "/status", notice: "Book returned successfully."
+    redirect_to "/status"
 
-  rescue ActiveRecord::RecordNotFound
-    redirect_to "/status", alert: "Borrowing record not found."
-  rescue ActiveRecord::RecordInvalid
-    redirect_to "/status", alert: "Unable to process the book return."
   end
 end

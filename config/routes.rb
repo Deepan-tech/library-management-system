@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post "/signup", to: "registrations#create"
 
   get "/students", to: "students#index"
-  get "/students/:id", to: "students#show"
+  get "/students/:id", to: "students#show", as: :student
 
   get "/login", to: "sessions#new", as: :login
   post "/login", to: "sessions#create"
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   patch "/books/edit/:id", to: "books#update"
   get "/books/edit/:id", to: "books#edit"
   get "/books/new", to: "books#new"
-  
+
+  get "/admin/department/index", to: "department#index"
 end

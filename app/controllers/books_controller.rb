@@ -12,19 +12,6 @@ class BooksController < ApplicationController
     @genres = Genre.all
   end
 
-  # def update
-  #   @book = Book.find(params[:id])
- 
-  # if @book.update(
-  #   title: params[:book][:title],
-  #   isbn: params[:book][:isbn],
-  #   publication_date: params[:book][:publication_date]
-  # )
-  #   redirect_to "/books"
-  # else
-  #   render :edit, status: :unprocessable_entity
-  # end
-  # end
   
   def update
   @book = Book.find(params[:id])

@@ -1,24 +1,51 @@
-<h1>Book Details</h1>
+<div class="container mt-4">
 
-<p>ID: <%= @book.id %></p>
-<p>Title: <%= @book.title %></p>
-<p>ISBN: <%= @book.isbn %></p>
-<p>Edition: <%= @book.edition %></p>
+  <h1 class="mb-3">Book Details</h1>
 
-<h2>Book Copies</h2>
+  <div class="card p-3 mb-4">
 
-<% @book.book_copies.each do |copy| %>
-  <div>
-    <p>Barcode: <%= copy.barcode %></p>
-    <p>Status: <%= copy.copy_status %></p>
+    <p><strong>ID:</strong> <%= @book.id %></p>
+    <p><strong>Title:</strong> <%= @book.title %></p>
+    <p><strong>ISBN:</strong> <%= @book.isbn %></p>
+    <p><strong>Edition:</strong> <%= @book.edition %></p>
 
-    <% if copy.copy_status == "available" %>
-      <%= button_to "Borrow Book","/book-copies/#{copy.id}/borrow",method: :post %>
-    <% else %>
-      <p>This copy is currently unavailable.</p>
-    <% end %>
   </div>
-  <hr>
-<% end %>
 
-<a href="/books">Back to Book List</a>
+  <h2 class="mb-3">Book Copies</h2>
+
+  <% @book.book_copies.each do |copy| %>
+
+    <div class="card p-3 mb-3">
+
+      <p><strong>Barcode:</strong> <%= copy.barcode %></p>
+
+      <p>
+        <strong>Status:</strong>
+        <span class="badge bg-info text-dark">
+          <%= copy.copy_status %>
+        </span>
+      </p>
+
+      <% if copy.copy_status == "available" %>
+
+        <%= button_to "Borrow Book",
+              "/book-copies/#{copy.id}/borrow",
+              method: :post,
+              class: "btn btn-primary btn-sm" %>
+
+      <% else %>
+
+        <p class="text-danger">
+          This copy is currently unavailable.
+        </p>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+
+  <%= link_to "Back to Book List", "/books",
+        class: "btn btn-secondary" %>
+
+</div>

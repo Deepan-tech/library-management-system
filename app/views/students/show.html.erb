@@ -1,8 +1,27 @@
-<h1>Student Details</h1>
+<h1>Student details</h1>
 
-<p>ID: <%= @students.id %></p>
-<p>Username: <%= @students.username %></p>
-<p>Email: <%= @students.email %></p>
-<p>Mobile: <%= @students.mobile %></p>
-
-<a href="/students">Back to Student List</a>
+<div>
+    <% if @students.any?%>
+      <table class="table table-striped table-bordered table-hover bg-white">
+    <thead>
+        <tr>
+            <td>username</td>
+            <td>email</td>
+            <td>mobile</td> 
+        </tr>
+    </thead>
+     <tbody>
+        <% @students.each do |student| %>  
+            <tr>
+                <td><%= student.username %></td>
+                <td><%= student.email %></td>
+                <td><%= student.mobile %></td>
+            </tr>
+        <% end %>
+     </tbody>
+        
+  </table>
+  <%else%>
+  <h4>No students found</h4>
+    <%end%>
+</div>
