@@ -10,7 +10,7 @@
 
   <% if @books.any? %>
 
-    <table border="1">
+    <table border="1" id = "books-table" class="display table table-striped">
       <thead>
         <tr>
           <th>ID</th>
@@ -39,3 +39,16 @@
 
 </body>
 </html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    new DataTable("#books-table", {
+      pageLength: 5,
+      ordering: true,
+      searching: true,
+      paging: true
+    });
+
+  });
+</script>

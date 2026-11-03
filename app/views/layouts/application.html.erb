@@ -18,6 +18,9 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+    <link rel="stylesheet"
+      href="https://cdn.datatables.net/v/dt/dt-3.1.5/datatables.min.css">
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -33,10 +36,12 @@
 
 <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 <%= javascript_importmap_tags %>
+
     
   </head>
 
   <body>
     <%= yield %>
+    <script src="https://cdn.datatables.net/v/dt/dt-3.1.5/datatables.min.js"></script>
   </body>
 </html>
