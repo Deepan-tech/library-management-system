@@ -14,7 +14,8 @@ def index
 end
 
   def show
-    @book = Book.find(params[:id])
+    book_details = BookDetailsCache.fetch(params[:id])
+    render json: book_details
   end
   
   def edit
@@ -22,7 +23,6 @@ end
     @genres = Genre.all
   end
 
-  
   def update
   @book = Book.find(params[:id])
 
