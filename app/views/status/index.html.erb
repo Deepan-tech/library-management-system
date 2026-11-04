@@ -1,47 +1,6 @@
 
 <h1 class="mb-4">Borrowing Status</h1>
 
-<div class="card p-3 mb-4 shadow-sm">
-
-  <%= form_with url: status_path, method: :get, local: true do |form| %>
-
-    <div class="row g-2">
-
-      <div class="col-md-3">
-        <%= form.select :search_by,
-          [
-            ["Student Name", "student_name"],
-            ["Department", "department"],
-            ["Current Status", "status"],
-            ["Genre Name", "genre"],
-            ["Book Name", "book_name"]
-          ],
-          { selected: @search_by, prompt: "Select search type" },
-          { class: "form-select" } %>
-      </div>
-
-      <div class="col-md-7">
-        <%= form.text_field :query,
-          value: @query,
-          placeholder: "Enter search value",
-          class: "form-control" %>
-      </div>
-
-      <div class="col-md-2">
-        <%= form.submit "Search",
-          class: "btn btn-primary w-100" %>
-      </div>
-
-    </div>
-
-  <% end %>
-
-  <div class="mt-2">
-    <%= link_to "Clear Search", status_path,
-      class: "btn btn-sm btn-outline-secondary" %>
-  </div>
-
-</div>
 
 <table id ="status-table" class="table table-striped table-hover table-bordered bg-white">
 
@@ -123,7 +82,7 @@
   </div>
 
 
-<%# <script>
+<script>
   document.addEventListener("DOMContentLoaded", function(){
     new DataTable("#status-table",{
       pageLength :5,
@@ -133,4 +92,4 @@
     });
   });
 
-</script> %>
+</script>

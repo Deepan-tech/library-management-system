@@ -1,7 +1,17 @@
 class BooksController < ApplicationController
-  def index
-    @books = Book.all
+  
+def index
+  respond_to do |format|
+
+    format.html do
+      @genres = Genre.all
+    end
+
+    format.json do
+      render json: BooksDatatable.new(params).call
+    end 
   end
+end
 
   def show
     @book = Book.find(params[:id])
@@ -22,7 +32,7 @@ class BooksController < ApplicationController
     @genres = Genre.all
     render :edit, status: :unprocessable_entity
   end
-end
+  end
 
   def new
     @book = Book.new
@@ -58,6 +68,5 @@ end
     :publication_date,
     genre_ids: []
   )
-end
-
+  end
 end
