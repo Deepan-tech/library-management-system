@@ -2,8 +2,10 @@ class StatusController < ApplicationController
    def index
     @statuses = Status.includes(
       :student,
-      book_copy: { book: :genres }
-    ) 
+       book_copy: {
+    book: :genre
+  }
+) 
   end
 
   def return_book

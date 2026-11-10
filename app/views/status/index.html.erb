@@ -25,9 +25,9 @@
 
         <td><%= status.student.username %></td>
 
-        <td>
-          <%= status.book_copy.book.genres.map(&:genre_name).join(", ") %>
-        </td>
+       <td>
+         <%= status.book_copy.book.genre&.genre_name || "No genre assigned" %>
+      </td>
 
         <td><%= status.book_copy.book.title %></td>
 

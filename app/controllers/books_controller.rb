@@ -60,13 +60,14 @@ end
     end
   end
   
-  def book_params
+ def book_params
   params.require(:book).permit(
     :title,
     :isbn,
     :edition,
     :publication_date,
-    genre_ids: []
+    :author_id,
+    :genre_id
   )
-  end
+ end
 end
