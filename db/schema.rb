@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_24_143610) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_10_070018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -29,13 +29,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_143610) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "book_authors", force: :cascade do |t|
+  create_table "book_availability_subscriptions", force: :cascade do |t|
+    t.bigint "student_id", null: false
     t.bigint "book_id", null: false
-    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_book_authors_on_author_id"
-    t.index ["book_id"], name: "index_book_authors_on_book_id"
+    t.index ["book_id"], name: "index_book_availability_subscriptions_on_book_id"
+    t.index ["student_id"], name: "index_book_availability_subscriptions_on_student_id"
   end
 
   create_table "book_copies", force: :cascade do |t|
@@ -47,15 +47,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_143610) do
     t.index ["book_id"], name: "index_book_copies_on_book_id"
   end
 
-  create_table "book_genres", force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "genre_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_book_genres_on_book_id"
-    t.index ["genre_id"], name: "index_book_genres_on_genre_id"
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "isbn"
@@ -63,6 +54,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_143610) do
     t.date "publication_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.bigint "genre_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["genre_id"], name: "index_books_on_genre_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -112,11 +107,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_143610) do
     t.index ["department_id"], name: "index_users_on_department_id"
   end
 
-  add_foreign_key "book_authors", "authors"
-  add_foreign_key "book_authors", "books"
+  add_foreign_key "book_availability_subscriptions", "books"
+  add_foreign_key "book_availability_subscriptions", "students"
   add_foreign_key "book_copies", "books"
-  add_foreign_key "book_genres", "books"
-  add_foreign_key "book_genres", "genres"
+  add_foreign_key "books", "authors"
+  add_foreign_key "books", "genres"
   add_foreign_key "statuses", "book_copies"
   add_foreign_key "statuses", "students"
   add_foreign_key "students", "departments"
