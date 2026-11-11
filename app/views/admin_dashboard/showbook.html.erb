@@ -16,6 +16,7 @@
     <th>ID</th>
     <th>Title</th>
     <th>ISBN</th>
+    <th>Author Name</th>
     <th>Edition</th>
 
     <% if session[:admin_id].present? %>
@@ -32,6 +33,7 @@
         <%= link_to book.title, book_path(book) %>
       </td>
       <td><%= book.isbn %></td>
+      <td><%= book.author.author_name%></td>
       <td><%= book.edition %></td>
 
       <% if session[:admin_id].present? %>

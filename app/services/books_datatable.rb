@@ -25,9 +25,7 @@ class BooksDatatable
     genre_id = @params[:genre_id]
 
     if genre_id.present?
-      books = books.joins(:genres)
-                   .where(genres: { id: genre_id })
-                   .distinct
+      books = books.where(genre_id: genre_id)
     end
 
     # Count after filtering

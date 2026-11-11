@@ -25,17 +25,13 @@
     <%= form.label :genre_ids, "Genres", class: "form-label" %>
 
     <%= form.collection_select(
-          :genre_ids,
-          genres,
-          :id,
-          :genre_name,
-          { prompt: "Select a genre" },
-          {
-            multiple: true,
-            class: "form-select",
-            id: "genre-select"
-          }
-        ) %>
+       :genre_ids,
+        genres,
+        :id,
+        :genre_name,
+        { prompt: "Select a genre" },
+        { multiple: true }
+     ) %>
 
     <div id="selected-genres" class="mt-2"></div>
   </div>

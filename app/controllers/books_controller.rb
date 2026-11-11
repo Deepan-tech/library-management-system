@@ -14,8 +14,10 @@ def index
 end
 
   def show
-    book_details = BookDetailsCache.fetch(params[:id])
-    render json: book_details
+    @book_details = BookDetailsCache.fetch(params[:id])
+    # render json: @book_details
+    @book = Book.find(params[:id])
+    
   end
   
   def edit
