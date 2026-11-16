@@ -2,7 +2,7 @@
 <h1 class="mb-4">Borrowing Status</h1>
 
 
-<table id ="#status-table" class="table table-striped table-hover table-bordered bg-white">
+<table id ="status-table" class="table table-striped table-hover table-bordered bg-white">
 
   <thead class="table-dark">
     <tr>
@@ -83,13 +83,52 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
-    new DataTable("#status-table",{
-      pageLength :5,
-      ordering :true,
-      searching :true,
-      paging :true
-    });
-  });
+  
+document.addEventListener("turbo:load", function () {
 
+  const table = document.querySelector("#status-table");
+
+  if (!table) return;
+
+  // Check whether DataTables JavaScript is loaded
+  if (typeof DataTable === "undefined") {
+    console.error("DataTables library is not loaded!");
+    return;
+  }
+
+  // Prevent duplicate initialization
+  if (DataTable.isDataTable("#status-table")) {
+    return;
+  }
+
+  new DataTable("#status-table", {
+    pageLength: 5,
+
+    lengthMenu: [5, 10, 25, 50, 100],
+
+    ordering: true,
+
+    searching: true,
+
+    paging: true,
+
+    info: true,
+
+    columnDefs: [
+      {
+        targets: 7,
+        orderable: false,
+        searchable: false
+      }
+    ],
+
+    language: {
+      search: "Search:",
+      lengthMenu: "Show _MENU_ entries",
+      info: "Showing _START_ to _END_ of _TOTAL_ entries",
+      emptyTable: "No borrowing records found",
+      zeroRecords: "No matching records found"
+    }
+  });
+});
 </script>

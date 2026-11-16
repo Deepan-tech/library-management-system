@@ -1,5 +1,6 @@
 class BookDetailsCache
   def self.fetch(book_id)
+    puts "hello"
     Rails.cache.fetch(
       "book_details/#{book_id}",
       expires_in: 10.minutes

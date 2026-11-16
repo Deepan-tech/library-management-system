@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+# puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
 gem "bcrypt"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.4"
@@ -66,3 +67,5 @@ group :test do
 end
 
 gem "redis", "~> 6.0"
+
+gem "jwt", "~> 3.3"

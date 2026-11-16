@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     email = params[:email].to_s.strip.downcase
     password = params[:password]
 
-    # Check student credentials
     student = Student.find_by(email: email)
 
     if student&.authenticate(password)
+     
       reset_session
       session[:student_id] = student.id
 
@@ -21,6 +21,8 @@ class SessionsController < ApplicationController
     admin = Admin.find_by(email: email)
 
     if admin&.authenticate(password)
+       puts "#{admin.username}"
+      puts "##########################################################"
       reset_session
       session[:admin_id] = admin.id
 

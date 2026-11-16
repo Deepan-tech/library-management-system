@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # puts "000000000000000000000000000000000000000000000"
   get "/status", to: "status#index"
   patch "/status/:id/return",to: "status#return_book",as: :return_status
 
@@ -35,4 +36,13 @@ Rails.application.routes.draw do
   get "/books/new", to: "books#new"
 
   get "/admin/department/index", to: "department#index"
+
+
+
+  namespace :api do
+  namespace :v1 do
+    post "login", to: "sessions#create"
+    get "me", to: "profiles#show"
+  end
+end
 end

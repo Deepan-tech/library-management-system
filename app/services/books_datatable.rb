@@ -8,31 +8,27 @@ class BooksDatatable
   def call
     books = Book.all
 
-    # Total records before filtering
     total_records = books.count
-
-    # Search
+    
     search_value = @params.dig(:search, :value)
 
-    if search_value.present?
+    if search_value.present? 
       books = books.where(
         "books.title ILIKE :search OR books.isbn ILIKE :search",
         search: "%#{search_value}%"
       )
     end
 
-    # Genre filtering
+    
     genre_id = @params[:genre_id]
 
     if genre_id.present?
       books = books.where(genre_id: genre_id)
     end
 
-    # Count after filtering
+    
     filtered_records = books.count
 
-    # Sorting
-    # Sorting
 
 columns = {
   0 => "id",
@@ -50,7 +46,7 @@ direction =
 
 books = books.order("#{column_name} #{direction}")
 
-    # Pagination
+    
     start = [@params[:start].to_i, 0].max
 
     length = @params[:length].to_i
@@ -59,7 +55,7 @@ books = books.order("#{column_name} #{direction}")
 
     books = books.offset(start).limit(length)
 
-    # JSON response
+    
     {
       draw: @params[:draw].to_i,
       recordsTotal: total_records,
