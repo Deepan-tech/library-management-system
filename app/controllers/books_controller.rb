@@ -69,7 +69,8 @@ end
     :edition,
     :publication_date,
     :author_id,
-    :genre_id
+    :genre_id,
+    :cover_image
   )
  end
 end

@@ -18,6 +18,7 @@
     <th>ISBN</th>
     <th>Author Name</th>
     <th>Edition</th>
+    <th>Book Cover</th>
 
     <% if session[:admin_id].present? %>
       <th>Action</th>
@@ -27,22 +28,37 @@
 
      <tbody>
   <% @books.each do |book| %>
-    <tr>
-      <td><%= book.id %></td>
-      <td>
-        <%= link_to book.title, book_path(book) %>
-      </td>
-      <td><%= book.isbn %></td>
-      <td><%= book.author.author_name%></td>
-      <td><%= book.edition %></td>
+  <tr>
+    <td><%= book.id %></td>
 
-      <% if session[:admin_id].present? %>
-        <td>
-          <%= link_to "Edit", "/books/edit/#{book.id}" %>
-        </td>
+    <td>
+      <%= link_to book.title, book_path(book) %>
+    </td>
+
+    <td><%= book.isbn %></td>
+
+    <td><%= book.author.author_name %></td>
+
+    <td><%= book.edition %></td>
+
+    <td>
+      <% if book.cover_image.attached? %>
+        <%= image_tag book.cover_image,
+            width: 80,
+            height: 110,
+            style: "object-fit: cover;" %>
+      <% else %>
+        No image
       <% end %>
-    </tr>
-  <% end %>
+    </td>
+
+    <% if session[:admin_id].present? %>
+      <td>
+        <%= link_to "Edit", "/books/edit/#{book.id}" %>
+      </td>
+    <% end %>
+  </tr>
+<% end %>
 </tbody>
     </table>
 

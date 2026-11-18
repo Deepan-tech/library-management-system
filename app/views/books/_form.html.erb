@@ -19,6 +19,11 @@
       <%= form.text_field :edition, class: "form-control" %>
     </div>
 
+    <div class="mb-3">
+  <%= form.label :cover_image, "Book Cover" %>
+  <%= form.file_field :cover_image, class: "form-control" %>
+</div>
+
     
 <% if session[:admin_id].present? %>
   <div class="mb-3">
