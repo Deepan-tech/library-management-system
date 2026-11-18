@@ -1,7 +1,10 @@
+require "securerandom"
+
 class JwtService
   ALGORITHM = "HS256"
 
-  def self.encode(payload , exp = 15.minutes.from_now)
+  def self.encode(payload , exp = 120.minutes.from_now)
+    payload[:jti] = SecureRandom.uuid
     payload[:exp] = exp.to_i
     JWT.encode(payload, secret_key , ALGORITHM)
   end
@@ -16,5 +19,4 @@ class JwtService
     decoded_token[0]
     # puts "Decoded Token: #{decoded_token}"  
   end
-  
 end

@@ -43,6 +43,13 @@ Rails.application.routes.draw do
   namespace :v1 do
     post "login", to: "sessions#create"
     get "me", to: "profiles#show"
+     get "admin/dashboard", to: "admin/dashboard#show" 
+    
+    resources :books, only: [:index, :show, :create, :update, :destroy]
+    resources :authors, only: [:index, :show, :create, :update, :destroy]
+    resources :genres, only: [:index, :show, :create, :update, :destroy]
+    resources :departments, only: [:index, :show, :create, :update, :destroy]
+    resources :book_copies, only: [:index, :show, :create, :update, :destroy]
   end
 end
 end

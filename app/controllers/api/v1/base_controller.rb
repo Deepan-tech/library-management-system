@@ -31,7 +31,7 @@ module Api
          when "student"
            Student.find_by(id: payload["sub"])
          when "admin"
-           Admin.find_by(id: payload["sub"])
+           ::Admin.find_by(id: payload["sub"])
          end
 
          unless @current_user
@@ -41,6 +41,14 @@ module Api
            return
          end
       end
+        def required_admin!
+           unless @current_role == "admin"
+            render json: {
+              Message: "Access denied. Admin only."
+            }, status: :forbidden  #403
+             return    
+           end
+         end
     end
   end
 end

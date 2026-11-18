@@ -11,10 +11,13 @@ module Api
         role = "student"
 
         unless user&.authenticate(password)
-          user = Admin.find_by(email: email)
+          user = ::Admin.find_by(email: email)
           role = "admin"
         end
-
+        puts "###################################"
+        puts "#{user.email}"
+        puts "#{role}"
+        puts "###################################"
         unless user&.authenticate(password)
           render json: {
             message: "Invalid email or password"
@@ -38,7 +41,6 @@ module Api
           }
         }, status: :ok
       end
-
     end
   end
 end
