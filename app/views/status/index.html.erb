@@ -1,6 +1,12 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Borrowing Status</h1>
 
-<h1 class="mb-4">Borrowing Status</h1>
-
+  <% if session[:admin_id].present? %>
+    <%= link_to "Export to Excel",
+        export_status_path,
+        class: "btn btn-success" %>
+  <% end %>
+</div>
 
 <table id ="status-table" class="table table-striped table-hover table-bordered bg-white">
 
@@ -75,11 +81,11 @@
   </div>
 <% end %>
 
-<div class="btn position-fixed top-0 end-0 m-3">
+<%# <div class="btn position-fixed top-0 end-0 m-3">
       <%= button_to "Logout", logout_path,
       method: :delete,
       class: "btn btn-danger" %>
-  </div>
+  </div> %>
 
 
 <script>

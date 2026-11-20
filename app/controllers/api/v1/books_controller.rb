@@ -16,10 +16,10 @@ class Api::V1::BooksController < Api::V1::BaseController
            books = books.where(author_id: params[:author_id])
          end
 
-          render json: books.as_json(include: [:author, :genre])
+          render json: books.map { |book| book_response(book) }
       end
       def show
-        render json: @book.as_json(include: [:author, :genre, :book_copies])
+        render json: book_response(@book)
       end
 
       def create
@@ -36,7 +36,7 @@ class Api::V1::BooksController < Api::V1::BaseController
 
       def update
         if @book.update(book_params)
-          render json: @book, status: :ok
+          render json: book_response(@book), status: :ok
         else
           render json: {
             errors: book.errors.full_messages
@@ -57,6 +57,15 @@ class Api::V1::BooksController < Api::V1::BaseController
 
 
       private 
+      
+    def book_response(book)
+         book.as_json(include: [:author, :genre, :book_copies])
+      .merge(
+        cover_image_url: book.cover_image.attached? ?
+          rails_blob_url(book.cover_image, host: request.base_url) : nil
+      )
+    end
+
       def set_book
         @book = Book.find(params[:id])
       end

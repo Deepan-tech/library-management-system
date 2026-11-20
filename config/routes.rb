@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # puts "000000000000000000000000000000000000000000000"
   get "/status", to: "status#index"
   patch "/status/:id/return",to: "status#return_book",as: :return_status
+  get "/status/export", to: "status#export", as: :export_status
 
   get "/signup", to: "registrations#new"
   post "/signup", to: "registrations#create"
@@ -37,10 +38,11 @@ Rails.application.routes.draw do
 
   get "/admin/department/index", to: "department#index"
 
+  get "up" => "rails/health#show"
+  get "/server-info", to: "server_info#show"
 
-
-  namespace :api do
-  namespace :v1 do
+ namespace :api do
+   namespace :v1 do
     post "login", to: "sessions#create"
     get "me", to: "profiles#show"
      get "admin/dashboard", to: "admin/dashboard#show" 
@@ -51,5 +53,5 @@ Rails.application.routes.draw do
     resources :departments, only: [:index, :show, :create, :update, :destroy]
     resources :book_copies, only: [:index, :show, :create, :update, :destroy]
   end
-end
+ end
 end

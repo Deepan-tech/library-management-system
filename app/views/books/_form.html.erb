@@ -26,20 +26,29 @@
 
     
 <% if session[:admin_id].present? %>
-  <div class="mb-3">
-    <%= form.label :genre_ids, "Genres", class: "form-label" %>
+ <div class="mb-3">
+  <%= form.label :author_id, "Author", class: "form-label" %>
+  <%= form.collection_select(
+    :author_id,
+    authors,
+    :id,
+    :author_name,
+    { prompt: "Select Author" },
+    { class: "form-select" }
+  ) %>
+</div>
 
-    <%= form.collection_select(
-       :genre_ids,
-        genres,
-        :id,
-        :genre_name,
-        { prompt: "Select a genre" },
-        { multiple: true }
-     ) %>
-
-    <div id="selected-genres" class="mt-2"></div>
-  </div>
+<div class="mb-3">
+  <%= form.label :genre_id, "Genre", class: "form-label" %>
+  <%= form.collection_select(
+    :genre_id,
+    genres,
+    :id,
+    :genre_name,
+    { prompt: "Select Genre" },
+    { class: "form-select" }
+  ) %>
+</div>
 <% end %>
 
 
@@ -47,6 +56,8 @@
       <%= form.label :publication_date, "Publication Date" %>
       <%= form.date_field :publication_date, class: "form-control" %>
     </div>
+
+    
 
     <%= form.submit "Save Book", class: "btn btn-primary" %>
 

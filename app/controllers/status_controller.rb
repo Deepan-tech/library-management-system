@@ -28,4 +28,18 @@ class StatusController < ApplicationController
     end
     redirect_to "/status"     
   end
+
+  def export
+  statuses = Status.includes(
+    :student,
+    book_copy: { book: :genre }
+  )
+
+  excel_data = StatusExportService.new(statuses).call
+
+  send_data excel_data,
+    filename: "borrowing_status_#{Date.current}.xlsx",
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    disposition: "attachment"
+  end
 end

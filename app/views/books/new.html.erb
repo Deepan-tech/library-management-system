@@ -9,7 +9,10 @@
       </div>
 
       <div class="card-body">
-        <%= render "form", book: @book, genres: @genres %>
+        <%= render "form",
+    book: @book,
+    genres: @genres,
+    authors: @authors %>
       </div>
     </div>
   <% end %>

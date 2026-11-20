@@ -69,3 +69,5 @@ end
 gem "redis", "~> 6.0"
 
 gem "jwt", "~> 3.3"
+
+gem "caxlsx"
