@@ -41,6 +41,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show"
   get "/server-info", to: "server_info#show"
 
+  get "/auth/google/callback",
+    to: "sessions#google_callback"
+
+  get "/auth/failure",
+    to: "sessions#oauth_failure"
+
  namespace :api do
    namespace :v1 do
     post "login", to: "sessions#create"

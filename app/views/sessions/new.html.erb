@@ -19,6 +19,16 @@
   <button type="submit">Login</button>
 <% end %>
 
+<hr>
+
+<div class="mt-3">
+  <%= button_to "Continue with Google",
+      "/auth/google_oauth2",
+      method: :post,
+      class: "btn btn-outline-danger",
+      data: { turbo: false } %>
+</div>
+
 <p>
   Don't have an account?
   <a href="/signup">Register as a student</a>

@@ -71,3 +71,7 @@ gem "redis", "~> 6.0"
 gem "jwt", "~> 3.3"
 
 gem "caxlsx"
+
+gem "omniauth"
+gem "omniauth-oauth2"
+gem "omniauth-google-oauth2"
