@@ -32,7 +32,6 @@ class StatusExportService
         ]
       end
     end
-    
     package.to_stream.read
   end
 end

@@ -41,6 +41,9 @@ class SessionsController < ApplicationController
 
   def google_callback
     auth = request.env["omniauth.auth"]
+    puts "((((((((((((((((((((((()))))))))))))))))))))))"
+    print auth
+    puts "((((((((((((((((((((((()))))))))))))))))))))))"
 
     unless auth.present?
       redirect_to login_path, alert: "Google authentication failed."
@@ -53,6 +56,7 @@ class SessionsController < ApplicationController
     end
 
     email = auth.dig("info", "email").to_s.downcase
+    puts email
 
   
     student = Student.where("LOWER(email) = ?", email).first
