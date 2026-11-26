@@ -16,15 +16,10 @@ class Api::V1::AuthorsController < Api::V1::BaseController
   end   
 
   def create
-    author = Author.new(author_params)  
+  author = Author.create!(author_params)
 
-    if author.save
-      render json: author, status: :created
-    else
-      render json: {
-        errors: author.errors.full_messages
-      }, status: :unprocessable_entity
-    end
+  render json: author.as_json(include: :books),
+         status: :created
   end
 
    def update
@@ -53,6 +48,9 @@ class Api::V1::AuthorsController < Api::V1::BaseController
   end
 
   def author_params
-     params.require(:author).permit(:author_name)
+  params.require(:author).permit(
+    :author_name,
+    books_attributes: [:title, :genre_id]
+  )
   end
 end

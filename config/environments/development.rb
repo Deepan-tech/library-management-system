@@ -81,4 +81,7 @@ Rails.application.configure do
   namespace: "library_management_manual",
   expires_in: 1.hour
 }
+
+config.action_mailer.delivery_method = :test
+config.action_mailer.perform_deliveries = true
 end

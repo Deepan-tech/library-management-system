@@ -19,8 +19,8 @@ class GenreController < ApplicationController
     else
       puts "Genre creation fails"
     end
-  
   end
+  
   def genre_param
     params.require(:genre).permit(:genre_name)
   end
