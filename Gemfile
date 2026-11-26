@@ -66,7 +66,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "redis", "~> 6.0"
+gem "redis", "~> 6.1"
 
 gem "jwt", "~> 3.3"
 
